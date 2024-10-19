@@ -40,4 +40,12 @@ async function Delete(id_doctor) {
     return { id_doctor }
 }
 
-export default { List, Insert, Edit, Delete }
+async function ListServices(id_doctor) {
+    let sql = "SELECT d.id_service, s.description, d.price FROM doctors_services d JOIN services s ON (s.id_service = d.id_service) WHERE d.id_doctor = ? ORDER BY s.description;"
+
+    const services = await consult(sql, [id_doctor])
+
+    return services
+}
+
+export default { List, Insert, Edit, Delete, ListServices }
