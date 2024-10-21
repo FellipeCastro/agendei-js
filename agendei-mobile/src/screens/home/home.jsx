@@ -1,10 +1,18 @@
 import { FlatList, Text, View } from "react-native"
 import { doctors } from "../../constants/data"
-import icon from "../../constants/icon"
 import { styles } from "./home.style"
 import Doctor from "../../components/doctor/doctor"
 
-function Home() {
+function Home(props) {
+    function clickDoctor(id_doctor, name, specialty, icon) {
+        props.navigation.navigate("services", {
+            id_doctor,
+            name,
+            specialty,
+            icon
+        })
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Agende seus serviços médicos</Text>
@@ -16,9 +24,11 @@ function Home() {
                 renderItem={({ item }) => {
                     return (
                         <Doctor 
+                            id_doctor={item.id_doctor}
                             name={item.name}
-                            icon={item.icon === "M" ? icon.male : icon.female}
+                            icon={item.icon}
                             specialty={item.specialty}
+                            onPress={clickDoctor}
                         />
                     )
                 }}

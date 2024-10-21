@@ -16,4 +16,12 @@ async function Insert(id_user, id_doctor, id_service, booking_date, booking_hour
     return { id_appointment: appointment.insertId }
 }
 
-export default { List, Insert }
+async function Delete(id_user, id_appointment) {
+    let sql = "DELETE FROM appointments WHERE id_appointment = ? AND id_user = ?"
+
+    await consult(sql, [id_appointment, id_user])
+
+    return { id_appointment }
+}
+
+export default { List, Insert, Delete }

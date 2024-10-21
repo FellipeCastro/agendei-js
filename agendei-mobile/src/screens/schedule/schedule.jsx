@@ -13,6 +13,13 @@ function Schedule(props) {
     const [selectedDate, setSelectedDate] = useState("")
     const [selectedHour, setSelectedHour] = useState("")
 
+    const id_doctor  = props.route.params.id_doctor
+    const id_service  = props.route.params.id_service
+
+    function clickBooking() {
+        console.log(id_doctor, id_service, selectedDate, selectedHour)
+    }
+
     return (
         <View style={styles.container}>
             <View>
@@ -40,7 +47,7 @@ function Schedule(props) {
             </View>
 
             <View>
-                <Button text="Confirmar reserva" />
+                <Button text="Confirmar reserva" onPress={clickBooking} />
             </View>
         </View>
     )

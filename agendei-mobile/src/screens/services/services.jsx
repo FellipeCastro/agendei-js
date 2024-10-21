@@ -4,13 +4,25 @@ import icon from "../../constants/icon"
 import { styles } from "./services.style"
 import Service from "../../components/service/service"
 
-function Services() {
+function Services(props) {
+    const id_doctor  = props.route.params.id_doctor
+    const name  = props.route.params.name
+    const specialty  = props.route.params.specialty
+    const iconDoctor  = props.route.params.icon
+
+    function clickService(id_service) {
+        props.navigation.navigate("schedule", {
+            id_doctor,
+            id_service
+        })
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.banner}>
-                <Image source={icon.female}/>
-                <Text style={styles.name}>Maria Joaquina</Text>
-                <Text style={styles.specialty}>Cirurgiã</Text>
+                <Image source={iconDoctor == "M" ? icon.male : icon.female}/>
+                <Text style={styles.name}>{name}</Text>
+                <Text style={styles.specialty}>{specialty}</Text>
             </View>
 
             <FlatList 
@@ -20,8 +32,10 @@ function Services() {
                 renderItem={({ item }) => {
                     return (
                         <Service 
+                            id_service={item.id_service}
                             description={item.description}
                             price={item.price}
+                            onPress={clickService}
                         />
                     )
                 }}
