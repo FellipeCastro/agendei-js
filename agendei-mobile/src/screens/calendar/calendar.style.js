@@ -9,6 +9,7 @@ export const styles = {
     text: {
         fontSize: FONT_SIZE.md,
         color: COLORS.gray1,
+        textAlign: "center",
         marginBottom: 15,
         marginLeft: 10,
     },
